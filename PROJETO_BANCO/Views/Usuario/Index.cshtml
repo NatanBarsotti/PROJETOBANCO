@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PROJETO_BANCO.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary"
+       asp-action="CadastrarUsuario"
+       asp-controller="Usuario">Cadastrar</a>
+</p>
+<a class="btn btn-primary"
+   asp-action="CadastrarUsuario"
+   asp-controller="Usuario">Cadastrar</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IdUsu)</th>
+                <th>@Html.DisplayNameFor(model => model.nomeUsu)</th>
+                <th>@Html.DisplayNameFor(model => model.Cargo)</th>
+                <th>@Html.DisplayNameFor(model => model.DataNasc)</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Usuario usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.IdUsu</td>
+                    <td>@usuario.nomeUsu</td>
+                    <td>@usuario.Cargo</td>
+                    <td>@usuario.DataNasc.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            @Html.ActionLink("Editar", "AtualizarUsuario",
+                            new { id = usuario.IdUsu })
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        @Html.ActionLink("Detalhes", "DetalhesUsuario",
+                                                new { id = usuario.IdUsu })
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        @Html.ActionLink("Excluir", "ExcluirUsuario",
+                                                new { id = usuario.IdUsu },
+                                                new { onclick = "return confirm('Deseja realmente excluir?');" })
+                    </button>
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
